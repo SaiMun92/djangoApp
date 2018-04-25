@@ -1,0 +1,6 @@
+python manage.py runserver
+
+python manage.py makemigrations
+- Add a field to the database
+
+python manage.py migrate
