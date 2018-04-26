@@ -14,4 +14,6 @@ class RestaurantLocation(models.Model):
     updated   = models.DateTimeField(auto_now=True)
     #my_date_field = models.DateField(auto_now=False, auto_now_add=False)
 
-
+    # Display the name of the content in the database
+    def __str__(self):
+        return self.name

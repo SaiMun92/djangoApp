@@ -4,3 +4,9 @@ python manage.py makemigrations
 - Add a field to the database
 
 python manage.py migrate
+
+
+
+db username and password:
+user: sai
+pwd:  password
