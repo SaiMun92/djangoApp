@@ -57,6 +57,7 @@ class RestaurantListView(ListView):
     # is derived using
     # "restaurantlocation" - from the model
     # "_list" - is because its a ListView
+
     def get_queryset(self):
 
         # this prints out the query
@@ -86,8 +87,9 @@ class RestaurantDetailView(DetailView):
     #     print(context)
     #     return context
 
-    # change "pk" to "rest_id"
-    def get_object(self, **kwargs):
-        rest_id = self.kwargs.get('rest_id')
-        obj = get_object_or_404(RestaurantLocation, id=rest_id)
-        return obj
+    # # change "pk" to "rest_id"
+    # def get_object(self, **kwargs):
+    #     rest_id = self.kwargs.get('rest_id')
+    #     obj = get_object_or_404(RestaurantLocation, id=rest_id)
+    #     return obj
+
