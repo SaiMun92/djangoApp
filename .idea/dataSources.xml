@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+<<<<<<< Updated upstream
     <data-source source="LOCAL" name="Django default" uuid="197f40e8-7dd6-40c3-b125-63c89cdd4b58">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
@@ -8,6 +9,13 @@
       <remarks>$PROJECT_DIR$/DjangoApp/settings.py</remarks>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:C:\Users\leesaimun\PycharmProjects\djangoApp\db.sqlite3</jdbc-url>
+=======
+    <data-source source="LOCAL" name="db.sqlite3" uuid="69d43fda-e7c5-4477-87e0-5798dcaeadeb">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db.sqlite3</jdbc-url>
+>>>>>>> Stashed changes
       <driver-properties>
         <property name="enable_load_extension" value="true" />
       </driver-properties>

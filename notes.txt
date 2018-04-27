@@ -10,3 +10,8 @@ python manage.py migrate
 db username and password:
 user: sai
 pwd:  password
+
+
+1. learn a more valuable skill
+2. Follow a different model
+3. Passive income

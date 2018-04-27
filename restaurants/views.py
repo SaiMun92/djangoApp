@@ -42,7 +42,7 @@ from .models import RestaurantLocation
 #         return context
 
 def restaurant_listview(request):
-    template_name = 'restaurants/restaurants_list.html'
+    template_name = 'restaurants/restaurantlocation_list.html'
 
     # Allows you to grab data from the database in the form of a list
     queryset = RestaurantLocation.objects.all()
@@ -53,9 +53,10 @@ def restaurant_listview(request):
 
 
 class RestaurantListView(ListView):
-    # overides the variables
-    template_name = 'restaurants/restaurants_list.html'
-
+    # The default template: restaurantlocation_list.html
+    # is derived using
+    # "restaurantlocation" - from the model
+    # "_list" - is because its a ListView
     def get_queryset(self):
 
         # this prints out the query
@@ -64,7 +65,8 @@ class RestaurantListView(ListView):
 
         if slug:
             queryset = RestaurantLocation.objects.filter(
-                Q(category__iexact=slug)
+                Q(category__iexact=slug) |
+                Q(category__icontains=slug)
             )
         else:
             queryset = RestaurantLocation.objects.all()
@@ -76,3 +78,9 @@ class RestaurantListView(ListView):
 
 class RestaurantDetailView(DetailView):
     queryset = RestaurantLocation.objects.all()
+
+    def get_context_data(self, **kwargs):
+        print(self.kwargs)
+        context = super(RestaurantDetailView, self).get_context_data(**kwargs)
+        print(context)
+        return context
