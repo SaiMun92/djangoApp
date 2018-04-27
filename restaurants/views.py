@@ -60,11 +60,11 @@ class RestaurantListView(ListView):
 
         # this prints out the query
         print(self.kwargs)
-        query = self.kwargs.get("query")
+        slug = self.kwargs.get("slug")
 
-        if query:
+        if slug:
             queryset = RestaurantLocation.objects.filter(
-                Q(category__iexact=query)
+                Q(category__iexact=slug)
             )
         else:
             queryset = RestaurantLocation.objects.all()
