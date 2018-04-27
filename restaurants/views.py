@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView
 import random
@@ -79,8 +79,15 @@ class RestaurantListView(ListView):
 class RestaurantDetailView(DetailView):
     queryset = RestaurantLocation.objects.all()
 
-    def get_context_data(self, **kwargs):
-        print(self.kwargs)
-        context = super(RestaurantDetailView, self).get_context_data(**kwargs)
-        print(context)
-        return context
+    # discovering what the context data returns
+    # def get_context_data(self, **kwargs):
+    #     print(self.kwargs)
+    #     context = super(RestaurantDetailView, self).get_context_data(**kwargs)
+    #     print(context)
+    #     return context
+
+    # change "pk" to "rest_id"
+    def get_object(self, **kwargs):
+        rest_id = self.kwargs.get('rest_id')
+        obj = get_object_or_404(RestaurantLocation, id=rest_id)
+        return obj
