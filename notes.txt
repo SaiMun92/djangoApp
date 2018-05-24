@@ -1,3 +1,7 @@
+django-admin startproject myproject
+
+python manage.py startapp restaurants
+
 python manage.py runserver
 
 python manage.py makemigrations

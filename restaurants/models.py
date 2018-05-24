@@ -5,6 +5,9 @@ from __future__ import unicode_literals
 from django.db import models
 from django.db.models.signals import pre_save, post_save
 
+from .utils import unique_slug_generator
+
+
 # Create your models here.
 class RestaurantLocation(models.Model):
     name      = models.CharField(max_length=120)
@@ -27,13 +30,16 @@ class RestaurantLocation(models.Model):
 def rl_pre_save_receiver(sender, instance, *args, **kwargs):
     print('saving...')
     print(instance.timestamp)
+    # if the slug field is empty, call the unique slug generator
+    if not instance.slug:
+        instance.slug = unique_slug_generator(instance)
 
 
-def rl_post_save_receiver(sender, instance, *args, **kwargs):
-    print('saved')
-    print(instance.timestamp)
+# def rl_post_save_receiver(sender, instance, *args, **kwargs):
+#     print('saved')
+#     print(instance.timestamp)
 
 
 pre_save.connect(rl_pre_save_receiver, sender=RestaurantLocation)
 
-post_save.connect(rl_pre_save_receiver, sender=RestaurantLocation)
+# post_save.connect(rl_pre_save_receiver, sender=RestaurantLocation)
