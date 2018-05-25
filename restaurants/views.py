@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.views import View
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView
 import random
 from django.db.models import Q
 from .models import RestaurantLocation
+from .forms import RestaurantCreateForm, RestaurantLocationCreateForm
+
 
 # Create your views here.
 # function based view
@@ -41,15 +43,66 @@ from .models import RestaurantLocation
 #         context = {"html_var": "Menu", "num": num}
 #         return context
 
+
+# METHOD 1: TO CREATE FORM
+# def restaurant_createview(request):
+#     form = RestaurantCreateForm(request.POST or None)
+#     errors = None
+#     if form.is_valid():
+#         # form validation
+#         obj = RestaurantLocation.objects.create(
+#             name = form.cleaned_data.get('name'),
+#             location = form.cleaned_data.get('location'),
+#             category = form.cleaned_data.get('category')
+#         )
+#         return HttpResponseRedirect("/restaurants/")
+#     else:
+#         errors = form.errors
+#
+#     template_name = 'restaurants/form.html'
+#     context = {
+#         "form": form,
+#         "errors": errors
+#     }
+#     return render(request, template_name, context)
+
+# METHOD 2: TO CREATE FORM
+def restaurant_createview(request):
+    form = RestaurantLocationCreateForm(request.POST or None)
+    errors = None
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect("/restaurants/")
+    else:
+        errors = form.errors
+
+    template_name = 'restaurants/form.html'
+    context = {
+        "form": form,
+        "errors": errors
+    }
+    return render(request, template_name, context)
+
+
 def restaurant_listview(request):
+    """
+    This is a function base view that can be used in the urls.py to render
+    the view to the DOM
+    """
+
     template_name = 'restaurants/restaurantlocation_list.html'
 
     # Allows you to grab data from the database in the form of a list
+    # RestaurantLocation.objects.all() - the call to return the data from the database
+
     queryset = RestaurantLocation.objects.all()
+
+    # queryset.filter(category__iexact='western') - filtering
     context = {
         "object_list": queryset
     }
     return render(request, template_name, context)
+
 
 def restaurant_detailview(request, slug):
     template_name = 'restaurants/restaurantlocation_detail.html'
@@ -71,10 +124,8 @@ class RestaurantListView(ListView):
 
     def get_queryset(self):
 
-        # this prints out the query
-        print(self.kwargs)
         slug = self.kwargs.get("slug")
-
+        print("slug: ", slug)
         if slug:
             queryset = RestaurantLocation.objects.filter(
                 Q(category__iexact=slug) |
@@ -82,6 +133,7 @@ class RestaurantListView(ListView):
             )
         else:
             queryset = RestaurantLocation.objects.all()
+
         return queryset
 
 
@@ -104,3 +156,9 @@ class RestaurantDetailView(DetailView):
     #     obj = get_object_or_404(RestaurantLocation, id=rest_id)
     #     return obj
 
+
+# METHOD 3:  TO CREATE FORM
+class RestaurantCreateView(CreateView):
+    form_class = RestaurantLocationCreateForm
+    template_name = 'restaurants/form.html'
+    success_url = "/restaurants/"
