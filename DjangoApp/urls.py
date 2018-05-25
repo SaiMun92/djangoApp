@@ -19,7 +19,7 @@ from django.views.generic import TemplateView
 # from restaurants.views import HomeView
 
 from restaurants.views import (
-    restaurant_listview,
+    # restaurant_listview,
     RestaurantListView,
     RestaurantDetailView,
 )

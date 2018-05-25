@@ -2,7 +2,7 @@ django-admin startproject myproject
 
 python manage.py startapp restaurants
 
-python manage.py runserver
+python manage.py runserver 8080 - to define port 8080
 
 python manage.py makemigrations
 - Add a field to the database

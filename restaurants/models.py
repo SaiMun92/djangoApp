@@ -26,6 +26,7 @@ class RestaurantLocation(models.Model):
     def title(self):
         return self.name
 
+
 # signal to the terminal that something has been saved to the database from the admin
 def rl_pre_save_receiver(sender, instance, *args, **kwargs):
     print('saving...')

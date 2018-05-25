@@ -51,12 +51,23 @@ def restaurant_listview(request):
     }
     return render(request, template_name, context)
 
+def restaurant_detailview(request, slug):
+    template_name = 'restaurants/restaurantlocation_detail.html'
+    obj = RestaurantLocation.objects.get(slug=slug)
+
+    context = {
+        "object": obj
+    }
+    return render(request, template_name, context)
+
 
 class RestaurantListView(ListView):
-    # The default template: restaurantlocation_list.html
-    # is derived using
-    # "restaurantlocation" - from the model
-    # "_list" - is because its a ListView
+    """
+    The default template: restaurantlocation_list.html
+    is derived using
+    "restaurantlocation" - from the model
+    "_list" - is because its a ListView
+    """
 
     def get_queryset(self):
 
