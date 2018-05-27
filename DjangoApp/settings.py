@@ -52,6 +52,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'DjangoApp.urls'
+LOGIN_URL = '/login/' #default
 
 TEMPLATES = [
     {

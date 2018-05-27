@@ -16,7 +16,7 @@ def clean_email(value):
         raise ValidationError("We do not accept edu emails")
 
 
-CATEGORIES = ['Mexican', 'Asian', 'American', 'Whatever']
+CATEGORIES = ['Mexican', 'Asian', 'American', 'Whatever', 'Western']
 
 
 def validate_category(value):
