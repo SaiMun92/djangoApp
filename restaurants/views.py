@@ -171,10 +171,16 @@ class RestaurantCreateView(LoginRequiredMixin, CreateView):
     form_class = RestaurantLocationCreateForm
     login_url = '/login/'
     template_name = 'restaurants/form.html'
-    success_url = "/restaurants/"
+    # success_url = "/restaurants/"
 
     def form_valid(self, form):
         instance = form.save(commit=False)
         instance.owner = self.request.user
         # instance.save()
         return super(RestaurantCreateView, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(RestaurantCreateView, self).get_context_data(*args, **kwargs)
+        context['title'] = 'Add Restaurant'
+        return context
+
