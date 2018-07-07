@@ -1,5 +1,7 @@
+# To create a django project
 django-admin startproject myproject
 
+# To create a seperate app within the django app
 python manage.py startapp restaurants
 
 python manage.py runserver 8080 - to define port 8080

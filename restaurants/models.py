@@ -30,7 +30,7 @@ class RestaurantLocation(models.Model):
 
     def get_absolute_url(self):
         return reverse('restaurants:detail', kwargs={'slug': self.slug})
-        # namespace: name
+        # namespace: name -> restaurants:detail
 
     @property
     def title(self):

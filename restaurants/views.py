@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
-from django.db.models import Q
+from django.db.models import Q # this is for complex lookups with Q objects
 
 from .models import RestaurantLocation
 from .forms import RestaurantCreateForm, RestaurantLocationCreateForm
