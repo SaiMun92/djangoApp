@@ -21,13 +21,13 @@ from django.views.generic import TemplateView
 from django.contrib.auth.views import LoginView
 
 
-from restaurants.views import (
-    restaurant_createview,
-    restaurant_listview,
-    RestaurantListView,
-    RestaurantDetailView,
-    RestaurantCreateView
-)
+# from restaurants.views import (
+#     restaurant_createview,
+#     restaurant_listview,
+#     RestaurantListView,
+#     RestaurantDetailView,
+#     RestaurantCreateView
+# )
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

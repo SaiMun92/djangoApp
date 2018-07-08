@@ -1,8 +1,12 @@
 <div class="container">
     <h1>Welcome to my korean Restaurant</h1>
     <a href="{% url "home" %}">Home</a>
-    <a href="{% url "restaurants:list" %}">Restaurants</a>
     <a href="{% url "about" %}">About</a>
     <a href="{% url "contact" %}">Contact</a>
+    {% if request.user.is_authenticated %}
+    <a href="{% url "restaurants:list" %}">Restaurants</a>
+    <a href="{% url "menus:list" %}">Menu Items</a>
+    {% endif %}
+
 {#    Find the name of e.g. home in the url.py name='home'#}
 </div>

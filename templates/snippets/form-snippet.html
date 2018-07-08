@@ -1,0 +1,10 @@
+{% if errors.non_field_errors %}
+    {{ form.errors.non_field_errors }}
+{% endif %}
+
+{#    csrf_token gets the data from the form#}
+<form method="post"> {% csrf_token %}
+{#        Django default form#}
+    {{  form.as_p }}
+    <button type="submit">Save</button>
+</form>
